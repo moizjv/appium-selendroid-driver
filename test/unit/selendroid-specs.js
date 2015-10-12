@@ -5,12 +5,16 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mochawait';
 import { SelendroidServer } from '../../lib/selendroid';
 import { fs } from 'appium-support';
-import { SE_APK_PATH, SE_MANIFEST_PATH } from 'appium-selendroid-installer';
 import ADB from 'appium-adb';
 import { withMocks } from 'appium-test-support';
+import path from 'path';
 
 chai.should();
 chai.use(chaiAsPromised);
+
+const SE_DIR = path.resolve(__dirname, "..", "..", "..", "selendroid");
+const SE_APK_PATH = path.resolve(SE_DIR, "selendroid-server.apk");
+const SE_MANIFEST_PATH = path.resolve(SE_DIR, "AndroidManifest.xml");
 
 function buildSelendroidOpts (adb = null) {
   if (!adb) {
